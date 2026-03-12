@@ -5,9 +5,9 @@
   "type": "module",
 {
   "scripts": {
-    "start": "npx ts-node server.ts"
+    "start": "node node_modules/ts-node/dist/bin.js server.ts"
   }
-
+}
     "dev": "tsx server.ts",
     "build": "vite build",
     "preview": "vite preview",
