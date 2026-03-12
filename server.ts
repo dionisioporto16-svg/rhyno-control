@@ -93,3 +93,65 @@ function normalizeText(text: string): string {
 
 /* ---------------- API SYNC ---------------- */
 /* SUA LÓGICA ORIGINAL FOI MANTIDA */
+
+/* ---------------- VITE + SERVER ---------------- */
+
+async function startServer() {
+  try {
+
+    if (process.env.NODE_ENV !== "production") {
+
+      const vite = await createViteServer({
+        server: { middlewareMode: true },
+        appType: "spa",
+      });
+
+      app.use(vite.middlewares);
+
+      app.use("*", async (req, res, next) => {
+
+        if (req.originalUrl.startsWith("/api")) {
+          return next();
+        }
+
+        try {
+
+          const indexPath = path.resolve("index.html");
+
+          if (!fs.existsSync(indexPath)) {
+            return res.status(500).send("index.html not found");
+          }
+
+          let template = fs.readFileSync(indexPath, "utf-8");
+
+          template = await vite.transformIndexHtml(req.originalUrl, template);
+
+          res.status(200).set({ "Content-Type": "text/html" }).end(template);
+
+        } catch (e) {
+          vite.ssrFixStacktrace(e as Error);
+          next(e);
+        }
+
+      });
+
+    } else {
+
+      app.use(express.static("dist"));
+
+      app.get("*", (req, res) => {
+        res.sendFile(path.resolve("dist/index.html"));
+      });
+
+    }
+
+    app.listen(PORT, "0.0.0.0", () => {
+      console.log(`Server running on http://localhost:${PORT}`);
+    });
+
+  } catch (error) {
+    console.error("Error starting server:", error);
+  }
+}
+
+startServer();
