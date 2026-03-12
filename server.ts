@@ -10,7 +10,7 @@ import multer from "multer";
 // Fix for XLSX in ESM
 import { createRequire } from "module";
 const nodeRequire = createRequire(import.meta.url);
-const xlsx = noderequire("xlsx");
+const xlsx = nodeRequire("xlsx");
 const { readFile, utils, SSF } = xlsx;
 
 const app = express();
