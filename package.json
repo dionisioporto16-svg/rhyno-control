@@ -5,8 +5,8 @@
   "type": "module",
 
  "scripts": {
-  "build": "tsc && vite build",
-  "start": "node dist/server.js",
+  "build": "vite build",
+  "start": "tsx server.ts",
   "dev": "tsx server.ts",
   "preview": "vite preview",
   "clean": "rm -rf dist",
