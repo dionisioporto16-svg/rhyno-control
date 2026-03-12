@@ -16,7 +16,7 @@ const { readFile, utils, SSF } = xlsx;
 const app = express();
 
 app.use(cors());
-app.use(express.json());
+app.use(express.static(path.resolve("dist")));
 
 const PORT: number = Number(process.env.PORT) || 3000;
 
