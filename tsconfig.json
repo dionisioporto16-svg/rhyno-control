@@ -5,13 +5,14 @@
     "moduleResolution": "Node16",
 
     "outDir": "dist",
+    "rootDir": ".",
 
     "esModuleInterop": true,
     "skipLibCheck": true,
     "strict": false,
 
-    "jsx": "react-jsx",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "jsx": "react-jsx"
   },
 
   "include": [
