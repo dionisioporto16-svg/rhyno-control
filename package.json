@@ -4,14 +4,14 @@
   "version": "0.0.0",
   "type": "module",
 
-  "scripts": {
-    "build": "tsc && vite build",
-    "start": "node dist/server.js",
-    "dev": "tsx server.ts",
-    "preview": "vite preview",
-    "clean": "rm -rf dist",
-    "lint": "tsc --noEmit"
-  },
+ "scripts": {
+  "build": "tsc server.ts --outDir dist && vite build",
+  "start": "node dist/server.js",
+  "dev": "tsx server.ts",
+  "preview": "vite preview",
+  "clean": "rm -rf dist",
+  "lint": "tsc --noEmit"
+}
 
   "dependencies": {
     "@google/genai": "^1.29.0",
