@@ -7,6 +7,11 @@ import { format } from "date-fns";
 import cors from "cors";
 import multer from "multer";
 
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
 // Fix for XLSX in ESM
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
@@ -38,7 +43,7 @@ const CIDADE_ALIASES: Record<string, string[]> = {
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
+app.listen(PORT, (0.0.0.0.) => {
   console.log("Server running on", PORT);
 });
 
